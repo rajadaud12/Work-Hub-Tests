@@ -33,7 +33,11 @@
             <include>**/*Tests.java</include>
           </includes>
           <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
-          <testFailureIgnore>true</testFailureIgnore> <!-- Continue build even if tests fail -->
+          <testFailureIgnore>true</testFailureIgnore>
+          <reportFormat>plain</reportFormat>
+          <systemPropertyVariables>
+            <webdriver.chrome.driver>/usr/bin/chromedriver</webdriver.chrome.driver>
+          </systemPropertyVariables>
         </configuration>
       </plugin>
     </plugins>
