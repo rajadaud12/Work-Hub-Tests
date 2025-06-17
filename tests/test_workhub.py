@@ -22,11 +22,11 @@ def driver():
 def test_valid_login(driver):
     print(f"Setting up test at {time.strftime('%Y-%m-%d %H:%M:%S PKT')}")
     driver.get("http://13.48.46.254:3001/login")
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "email"))).send_keys("test@example.com")
-    driver.find_element(By.NAME, "password").send_keys("test123")
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "email"))).send_keys("daudnasar16@gmail.com")
+    driver.find_element(By.NAME, "password").send_keys("Daud@786")
     driver.find_element(By.CSS_SELECTOR, "button[type='submit']").click()
-    WebDriverWait(driver, 10).until(EC.url_contains("/"))
-    assert "/login" not in driver.current_url  # Redirect to home indicates success
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "text-gray-900")))
+    assert "Welcome" in driver.page_source  # Check for welcome text indicating success
 
 def test_invalid_email_login(driver):
     print(f"Setting up test at {time.strftime('%Y-%m-%d %H:%M:%S PKT')}")
@@ -56,12 +56,11 @@ def test_empty_fields_login(driver):
 def test_already_logged_in_login(driver):
     print(f"Setting up test at {time.strftime('%Y-%m-%d %H:%M:%S PKT')}")
     driver.get("http://13.48.46.254:3001/login")
-    driver.find_element(By.NAME, "email").send_keys("registereduser@example.com")
-    driver.find_element(By.NAME, "password").send_keys("registeredpass")
+    driver.find_element(By.NAME, "email").send_keys("daudnasar16@gmail.com")
+    driver.find_element(By.NAME, "password").send_keys("Daud@786")
     driver.find_element(By.CSS_SELECTOR, "button[type='submit']").click()
-    # Assuming login redirects or shows a message; adjust if different
-    WebDriverWait(driver, 10).until(EC.url_contains("/"))
-    assert "/login" not in driver.current_url  # Success or redirect
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "text-gray-900")))
+    assert "Welcome" in driver.page_source  # Check for welcome text indicating success
 
 # Signup Test Cases
 def test_valid_signup(driver):
