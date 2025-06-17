@@ -98,8 +98,9 @@ def test_signup_page_loads(driver):
     assert "Create Account" in driver.page_source
 
 # New Simple Test Case (Guaranteed to Pass)
-def test_page_title(driver):
+def test_login_submit_button_exists(driver):
     print(f"Setting up test at {time.strftime('%Y-%m-%d %H:%M:%S PKT')}")
     driver.get("http://13.48.46.254:3001/login")
-    WebDriverWait(driver, 10).until(EC.title_contains("Log In"))
-    assert "Log In" in driver.title
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "button[type='submit']")))
+    button = driver.find_element(By.CSS_SELECTOR, "button[type='submit']")
+    assert button.text == "Sign In"
