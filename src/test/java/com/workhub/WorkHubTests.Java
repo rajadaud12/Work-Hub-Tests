@@ -15,13 +15,13 @@ public class WorkHubTests {
     private WebDriver driver;
     private String baseUrl = "http://13.48.46.254:4000"; // change if needed
 
-    @Before
-    public void setUp() {
-        // You can configure ChromeDriver path with System.setProperty if needed
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get(baseUrl);
-    }
+   @Before
+public void setUp() {
+    System.out.println("Setting up test at " + new java.util.Date());
+    driver = new ChromeDriver();
+    driver.manage().window().maximize();
+    driver.get(baseUrl);
+}
 
     // Existing Login Test
     @Test
