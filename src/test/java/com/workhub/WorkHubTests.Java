@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
 public class WorkHubTests {
 
     private WebDriver driver;
-    private String baseUrl = "http://13.48.46.254:4000"; // change if needed
+    private String baseUrl = "http://13.48.46.254:3001"; // change if needed
 
    @Before
 public void setUp() {
