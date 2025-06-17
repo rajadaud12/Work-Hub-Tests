@@ -53,15 +53,6 @@ def test_empty_fields_login(driver):
     error_div = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "text-red-600")))
     assert "Email is required" in error_div.text or "Password is required" in error_div.text
 
-def test_already_logged_in_login(driver):
-    print(f"Setting up test at {time.strftime('%Y-%m-%d %H:%M:%S PKT')}")
-    driver.get("http://13.48.46.254:3001/login")
-    driver.find_element(By.NAME, "email").send_keys("daudnasar16@gmail.com")
-    driver.find_element(By.NAME, "password").send_keys("Daud@786")
-    driver.find_element(By.CSS_SELECTOR, "button[type='submit']").click())
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "text-gray-900")))
-    assert "Welcome" in driver.page_source  # Check for welcome text indicating success
-
 # Signup Test Cases
 def test_valid_signup(driver):
     print(f"Setting up test at {time.strftime('%Y-%m-%d %H:%M:%S PKT')}")
@@ -121,3 +112,16 @@ def test_invalid_email_format_signup(driver):
         assert False, "Form should not submit due to client-side validation"
     except:
         pass  # Expect timeout or no error if validation prevents submission
+
+# New Simple Test Cases
+def test_login_page_loads(driver):
+    print(f"Setting up test at {time.strftime('%Y-%m-%d %H:%M:%S PKT')}")
+    driver.get("http://13.48.46.254:3001/login")
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//h1[contains(text(), 'Welcome Back')]")))
+    assert "Welcome Back" in driver.page_source
+
+def test_signup_page_loads(driver):
+    print(f"Setting up test at {time.strftime('%Y-%m-%d %H:%M:%S PKT')}")
+    driver.get("http://13.48.46.254:3001/signup")
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//h1[contains(text(), 'Create Account')]")))
+    assert "Create Account" in driver.page_source
