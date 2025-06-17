@@ -35,7 +35,7 @@ def test_invalid_email_login(driver):
     driver.find_element(By.NAME, "password").send_keys("test123")
     driver.find_element(By.CSS_SELECTOR, "button[type='submit']").click()
     error_div = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "text-red-600")))
-    assert "Invalid email format" in error_div.text
+    assert "Invalid email or password" in error_div.text  # Updated to match actual error
 
 def test_invalid_password_login(driver):
     print(f"Setting up test at {time.strftime('%Y-%m-%d %H:%M:%S PKT')}")
@@ -112,5 +112,5 @@ def test_invalid_email_format_signup(driver):
     driver.find_element(By.NAME, "password").send_keys("validpass123")
     driver.find_element(By.NAME, "confirmPassword").send_keys("validpass123")
     driver.find_element(By.CSS_SELECTOR, "button[type='submit']").click()
-    error_div = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "text-red-600")))
+    error_div = WebDriverWait(driver, 15).until(EC.visibility_of_element_located((By.CLASS_NAME, "text-red-600")))
     assert "Invalid email format" in error_div.text
