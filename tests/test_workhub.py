@@ -47,7 +47,7 @@ def test_login_email_field_exists(driver):
     driver.get("http://13.48.46.254:3001/login")
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "email")))
     email_field = driver.find_element(By.NAME, "email")
-    assert email_field.get_attribute("placeholder") == "Enter your email"
+    assert email_field.get_attribute("placeholder") == "your@email.com"
 
 # Signup Test Cases
 def test_duplicate_email_signup(driver):
